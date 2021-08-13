@@ -14,6 +14,7 @@ describe('UserOnboarding App', () => {
     const emailInput = () => cy.get('input[name="email"]')
     const passwordInput = () => cy.get('input[name="password"]')
     const termsCheckbox = () => cy.get('[type="checkbox"]')
+    const submitButton = () => cy.get('.submitBtn')
 
     it('can type in the name input', () => {
         userNameInput()
@@ -40,4 +41,20 @@ describe('UserOnboarding App', () => {
         .check()
         .should('be.checked')
     })
+    it('add a new user by hitting submit button', () => {
+        userNameInput().type('Test Name')
+        emailInput().type('test@test.com')
+        passwordInput().type('1234')
+        termsCheckbox().check()
+        submitButton().click()
+    })
+    it('check validation if a form is left empty', () => {
+        userNameInput().type('12')
+        emailInput().type(123)
+        passwordInput().type('1')
+        termsCheckbox().check()
+        termsCheckbox().uncheck()
+    })
+        
+    
 })

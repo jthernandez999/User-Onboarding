@@ -74,7 +74,7 @@ const onChange = evt => {
             </div>
 
             <div className='form-group submit'>
-                <button disabled={disabled}>Submit</button>
+                <button className='submitBtn' disabled={disabled}>Submit</button>
             </div>
         </form>
     )
