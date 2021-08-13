@@ -1,3 +1,29 @@
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components'
+
+const Div = styled.div`
+display: block;
+align-items: center;
+justify-contents: space-between;
+margin: 75px auto;
+
+`
+
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background: #F5F9E9;
+    width: 90%;
+    cursor: pointer;
+    margin: 30px auto;
+    opacity: 1;
+    
+`
 
 export default function UserForm(props) {
     const {
@@ -23,9 +49,9 @@ const onChange = evt => {
     }
     
     return (
-        <form className='form container' onSubmit={onSubmit}>
+        <Form className='form container' onSubmit={onSubmit}>
 
-            <div className='form-group inputs'>
+            <Div className='form-group inputs'>
                 <h4>General Information</h4>
 
                 <div className='errors'>
@@ -34,7 +60,7 @@ const onChange = evt => {
                     <div>{errors.password}</div>
                     <div>{errors.terms}</div>
                 </div>
-
+            
                 <label>Username
                     <input 
                         onChange={onChange}
@@ -43,6 +69,7 @@ const onChange = evt => {
                         type='text'
                     />
                 </label>
+                
 
                 <label>Email
                     <input
@@ -71,12 +98,16 @@ const onChange = evt => {
                     />
                 </label>
 
-            </div>
+            </Div>
 
             <div className='form-group submit'>
-                <button className='submitBtn' disabled={disabled}>Submit</button>
+                
+                <Button onClick={onSubmit}variant='contained' color='primary' className='submitBtn' disabled={disabled}>Submit</Button>
+                
             </div>
-        </form>
+
+
+        </Form>
     )
 }
 

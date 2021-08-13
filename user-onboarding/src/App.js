@@ -5,6 +5,20 @@ import UserForm from './components/UserForm'
 import axios from 'axios';
 import schema from './validation/formSchema';
 import * as yup from 'yup'
+import styled from 'styled-components';
+
+
+const Div = styled.div`
+border-radius: 10px;
+max-width: 500px;
+margin: 30px auto;
+overflow: auto;
+min-height: 300px;
+padding: 30px;
+border: 1px solid white;
+background-color: #596869 ;
+opacity: 1;
+`
 
 const initialFormValues = {
   username: '',
@@ -82,9 +96,10 @@ function App() {
       username: formValues.username.trim(), 
       email: formValues.email.trim(), 
       password: formValues.password.trim(), 
-      terms: true
+      terms: true      
     }
     postNewUser(newUser)
+    closeModal()
   }
 
   useEffect(() => {
@@ -98,28 +113,48 @@ function App() {
       setDisabled(!isSchemaValid)
     })
   }, [formValues])
+
+    const closeModal = () => {
+      document.querySelector('.bg-modal').style.display= 'none';
+      document.querySelector('.add-button').style.display= 'flex';
+    }
+  const onClick = () => {
+    document.querySelector('.bg-modal').style.display= 'flex';
+    document.querySelector('.add-button').style.display= 'none';
+  }
+  const close = () => {
+      document.querySelector('.bg-modal').style.display = 'none';
+    
+  }
     
 
   return (
-    <div className="App">
-
-    <UserForm 
-      values={formValues}
-      disabled={disabled}
-      submit={formSubmit}
-      change={inputChange}
-      errors={formErrors}
-    />
-
+    <div >
+  <div className='bg-modal'>
+        <div className='modal-content'>
+          <div className='close' onClick={close}>+</div>
+            <UserForm 
+              values={formValues}
+              disabled={disabled}
+              submit={formSubmit}
+              change={inputChange}
+              errors={formErrors}
+            />
+          </div>
+        </div>
+    <button className='add-button' onClick={onClick}>Add User</button>
     
+
+    <Div className="App">
     {
       users.map(user => {
         return (
-          <User details={user} />
+          <User key={user.id} details={user} />
         )
       })
     }
-    
+    </Div>
+
     </div>
   )
 }
