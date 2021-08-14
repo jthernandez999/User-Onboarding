@@ -47,18 +47,21 @@
   }
   .add-button {
     display: flex;
+    margin: auto;
+    margin-top: 3%;
+    height: 100px;
+    width: 30%;
+    flex-direction: row;
     justify-content: center;
-    flex-direction: initial;
-    margin: 20px;
     text-align: center;
     align-items: center;
-    background-color: dodgerblue;
+    background-color: olive;
     border: 2px solid white;
     border-radius: 30px;
     text-decoration: none;
     padding: 10px 28px;
     color: white;
-    margin-top: 10px;
+    
     
   }
   
